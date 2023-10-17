@@ -3,7 +3,7 @@ dataref("agl_alt", "sim/flightmodel/position/y_agl") -- altitude above ground le
 dataref("aal_alt", "sim/flightmodel/position/elevation") -- altitude above airport
 dataref("gspd", "sim/flightmodel/position/groundspeed") -- ground speed
 dataref("vs", "sim/flightmodel/position/vh_ind_fpm") -- vertical speed
-dataref("flaps", "sim/flightmodel/controls/flaprqst") -- flaps
+dataref("flaps", "sim/cockpit2/controls/flap_handle_deploy_ratio") -- flaps
 dataref("gear", "sim/cockpit/switches/gear_handle_status") -- gear
 dataref("beacon", "sim/cockpit/electrical/beacon_lights_on")--beacon lights
 dataref("taxi_lgt","sim/cockpit/electrical/taxi_light_on") -- taxi light
@@ -28,8 +28,8 @@ add_macro("test position log", "log_pos()")
 
 sofs = {"On Gate","Taxi","Climb","Climb(>10,000ft)","Cruise","Initial Descent","Final Descent/Initial Approach","Final Approach"}
 
-function landing_rate()
-    if touchdown and not on_ground then
+function landing_rate() -- FINISHME
+    if touchdown == 1 and not on_ground then
         on_ground = true
         return vs
     else
@@ -38,16 +38,17 @@ function landing_rate()
 end
 
 function config_check(sof) -- checks that the aircraft is in the correct config for the stage of flight
+    -- FIXME: figure out whats going on with the lights in the config
     if sof == 0 then
         return true
     elseif sof == 1 then -- taxi
-        return beacon and xpdr >= 2 and taxi_lgt and pax_sign
+        return beacon and (xpdr >= 2) and taxi_lgt and pax_sign
     elseif sof == 2 then -- climb below 10k
-        return pax_sign and ldg_lgts and beacon and strobes and xpdr >= 3
+        return pax_sign and ldg_lgts and beacon and strobes and (xpdr >= 3)
     elseif sof == 3 or sof == 5 then -- climb/descent >10k
-        return strobes and beacon and --[[xdpr >=3 and]]flaps == 0 and not ldg_lgts
+        return strobes and beacon and --[[xdpr >=3 and]](flaps == 0) and not ldg_lgts
     elseif sof == 4 then -- cruise
-        return strobes and xpdr >= 3 and flaps == 0 and not gear and not ldg_lgts
+        return strobes and (xpdr >= 3) and (flaps == 0) and not gear and not ldg_lgts
     elseif sof == 6 then --descent below 10k
         return pax_sign and ldg_lgts and beacon and strobes and xpdr >= 3
     elseif sof == 7 then --final
@@ -59,7 +60,7 @@ function stage_of_flight() --checks what stage the flight is in
 
     if not (eng_n2s[0] >= 20 or eng_n2s[1] >=20) then
         return 0 -- on stand
-    elseif touchdown then
+    elseif touchdown == 1 then
         return 1 --taxi
     elseif vs > 100 and baro_alt < 10000 then
         return 2 --climb below 10k
