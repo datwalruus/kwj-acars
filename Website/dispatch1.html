@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KiwiJet - Dispatch</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="script.js"></script>
+    <link rel="icon" href="images/KiwiJet_Kiwifruit.png">
+</head>
+
+<!--set body background color as image color-->
+<body style="background-color: rgb(0,0,0);">
+    <!--header-->
+    <div class="header" id="header">
+        <!--logo image-->
+        <a href="home.html"><img src="images/KiwiJet_Logo.png" alt="KiwiJet logo with name" id="logo-image"
+                                 style="width: 45%;"></a>
+        <!--navigation button-->
+        <a href="javascript:scroll_down()">
+        <img src="images/Navigation_Button.png" alt="3 horizontal bars aligned vertically" id="navigation-button"
+             style="right: 0%; width: 15%; z-index: -1;">
+        </a>
+        <!--header links-->
+        <div class="header-main">
+            <div class="header-grid">
+                <div class="header-item">
+                    Data
+                    <div class="dropdown-content">
+                        <p><a href="data-company.html">Company</a></p>
+                        <p><a href="data-pilot.html">Pilot</a></p>
+                    </div>
+                </div>
+                <div class="header-item">
+                    <a href="documents.html">Documents</a>
+                </div>
+                <div class="header-item">
+                    <a href="dispatch.html">Dispatch</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--header image-->
+    <img src="images/E175_Cruise_4.png" alt="KiwiJet E175 in cruise">
+
+    <!--main-->
+
+    <!--
+    use background linear gradient to color parts not covered by main divs
+
+    light-grey: #d8d4d4
+    grey: #5b5c61
+    green: #9dc143
+    white: white
+
+    use outer-skew-3 or -n3 div, with style of div color then inner-skew-n3 or -3 div, respectively
+
+    grey: style="background-color: rgb(91, 92, 97);"
+    green: style="background-color: rgb(158, 193, 67);"
+
+    use style="grid-column: 1 / span 2;" on main-item div to join 2 grids
+    -->
+    <div class="background" style="background: linear-gradient(to bottom, #000000 0% 25%, #5b5c61 25% 75%, white 75%);">
+        <!--first main div-->
+        <div class="outer-skew-3" style="background-color: rgb(91, 92, 97);">
+            <div class="inner-skew-n3">
+                <div class="main-grid">
+                    <div class="main-item" style="grid-column: 1 / span 2;">
+                        KiwiJet's Dispatch system for pilots. This dispatch system is run through SimBrief and will soon
+                        be replaced with a full ACARS (Aircraft Communications Addressing and Reporting System) with an
+                        SimBrief API integration.
+                    </div>
+                    <div class="main-item" style="border-radius: 25px;">
+                        <a href="https://dispatch.simbrief.com/options/new" target=”_blank”>
+                            <img src="images/SimBrief.png" alt="Image link to SimBrief Dispatch System">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--footer-->
+    <div class="footer">
+        <div class="footer-grid">
+            <div class="footer-item" style="text-align: center; margin-top: auto;">
+                <img src="images/KiwiJet_Kiwifruit.png" alt="KiwiJet logo">
+            </div>
+            <div class="footer-item">
+                <h1>KiwiJet</h1>
+                <hr>
+                <h2><a href="home.html">Home</a></h2>
+                <h2>Data</h2>
+                <ul>
+                    <li><a href="data-company.html">Company</a></li>
+                    <li><a href="data-pilot.html">Pilot</a></li>
+                </ul>
+                <h2><a href="documents.html">Documents</a></h2>
+                <h2><a href="dispatch.html">Dispatch</a></h2>
+            </div>
+            <div class="footer-item">
+                <p>YOU'RE VISITING ANOTHER LENNY WEBSITE</p>
+                <hr>
+                <h2>Found a problem with the website? Report it:</h2>
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScBngBJqAbFlGgVXJdOnmxx9CSJTAOt54n2lS2lZiOG4frC0A/viewform?embedded=true"
+                        width="100%" title="Website problem/issue reporter"></iframe>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
